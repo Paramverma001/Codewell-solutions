@@ -1,0 +1,74 @@
+body {
+  background: url("profile.jpg") no-repeat center center fixed;
+  background-size: cover;
+  image-rendering: -webkit-optimize-contrast; /* Better pixel rendering */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Reset default browser padding/margin */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body setup */
+body {
+  font-family: "Poppins", sans-serif;
+  background: #fff;
+  color: #000;
+  line-height: 1.6;
+  overflow-x: hidden; /* No horizontal scroll */
+}
+
+/* Containers that scale automatically */
+.container {
+  width: 100%;
+  max-width: 1200px; /* For large screens */
+  margin: auto;
+  padding: 0 15px; /* Small padding for mobile */
+}
+img {
+  max-width: 100%;
+  height: auto; /* Prevents overflow on mobile */
+  display: block;
+}
+
+.background {
+  background: url("profile.jpg") no-repeat center center;
+  background-size: cover;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+h1 {
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+
+p {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+}
+/* For tablets & below */
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column; /* stack menu */
+    text-align: center;
+  }
+
+  .hero {
+    padding: 40px 20px;
+  }
+}
+
+/* For small phones */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+  p {
+    font-size: 1rem;
+  }
+}

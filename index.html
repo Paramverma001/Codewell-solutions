@@ -1,0 +1,628 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link src="/style.css">
+   <link src="/services/for professionals.html">
+   <link src="/services/deployment.html">
+    <link src="/services/for students.html">
+     <link src="/project order.html">
+       <link src="/work.html">
+         <link src="/contact.html">
+              <link src="/index.html">
+  <title>CodeWell Solution</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<!-- Logo Splash Overlay -->
+<div id="logo-splash">
+  <img src="/images/CWS logo1.png" alt="Logo" class="logo">
+</div>
+
+<style>
+  /* Full-screen splash overlay */
+  #logo-splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95); /* semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; /* stays on top of everything */
+    opacity: 1;
+    pointer-events: none; /* allow clicks after fade */
+    transition: opacity 1s ease;
+  }
+
+  /* Logo styling with simple fade-in effect */
+  #logo-splash .logo {
+    max-width: 200px;
+    animation: fadeIn 1.5s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+</style>
+
+<script>
+  // Fade out splash after page load
+  window.addEventListener("load", function() {
+    const splash = document.getElementById('logo-splash');
+    setTimeout(() => {
+      splash.style.opacity = 0; // fade out
+      setTimeout(() => splash.style.display = 'none', 1000); // remove after fade
+    }, 1500); // splash visible duration
+  });
+</script>
+
+  <!-- Navbar -->
+  <header class="border-b bg-white fixed top-0 w-full z-50 shadow-sm">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      
+      <!-- Logo -->
+      <a href="/index.html" class="flex items-center space-x-2">
+        <img src="/images/CWS logo1.png" alt="CodeWell Solutions Logo" class="h-12 w-auto">
+      </a>
+
+      <!-- Navbar Links -->
+    <ul class="hidden md:flex space-x-10 text-sm font-medium text-gray-700 relative">
+      <li><a href="/index.html" class="hover:text-[#1E2A38] transition">Home</a></li>
+      <li><a href="/about.html" class="hover:text-[#1E2A38] transition">About</a></li>
+      
+      <!-- Services Dropdown (Click to Toggle) -->
+      <li class="relative">
+        <button id="servicesBtn" class="hover:text-[#1E2A38] transition flex items-center">
+          Services ▾
+        </button>
+        
+        <!-- Mega Menu -->
+        <div id="servicesMenu" class="absolute left-1/2 transform -translate-x-1/2 mt-3 w-[80vw] max-w-5xl bg-white shadow-xl rounded-lg hidden z-40">
+          <div class="flex">
+            
+            <!-- Categories Column -->
+            <div class="w-1/3 border-r p-6">
+              <ul class="space-y-4 font-medium text-gray-700">
+                <li href="/services/deployment.html" class="cursor-pointer hover:text-[#1E2A38]" data-panel="deployments">Deployments</li>
+                <li href="/services/for students.html" class="cursor-pointer hover:text-[#1E2A38]" data-panel="students">For Students</li>
+                <li href="/services/for professionals.html" class="cursor-pointer hover:text-[#1E2A38]" data-panel="professionals">For Professionals</li>
+              </ul>
+            </div>
+
+            <!-- Services Panels -->
+            <div class="w-2/3 p-8">
+              <div id="deployments" class="service-panel hidden">
+                <h3 class="text-lg font-semibold mb-4 text-[#1E2A38]">Deployments</h3>
+                <ul class="space-y-3 text-gray-600">
+                  <li><a href="/services/deployment.html" class="hover:text-[#1E2A38]">Full Website Deployments</a></li>
+                  <li><a href="/services/deployment.html" class="hover:text-[#1E2A38]">Business Landing Pages</a></li>
+                  <li><a href="/services/deployment.html" class="hover:text-[#1E2A38]">Portfolio Deployments</a></li>
+                </ul>
+              </div>
+
+              <div id="students" class="service-panel hidden">
+                <h3 class="text-lg font-semibold mb-4 text-[#1E2A38]">For Students</h3>
+                <ul class="space-y-3 text-gray-600">
+                  <li><a href="/services/for students.html" class="hover:text-[#1E2A38]">College Project Websites</a></li>
+                  <li><a href="/services/for students.html" class="hover:text-[#1E2A38]">Assignment & Report Portals</a></li>
+                  <li><a href="/services/for students.html" class="hover:text-[#1E2A38]">Mini Project Deployments</a></li>
+                </ul>
+              </div>
+
+              <div id="professionals" class="service-panel hidden">
+                <h3 class="text-lg font-semibold mb-4 text-[#1E2A38]">For Professionals</h3>
+                <ul class="space-y-3 text-gray-600">
+                  <li><a href="/services/for professionals.html" class="hover:text-[#1E2A38]">Portfolio Websites</a></li>
+                  <li><a href="/services/for professionals.html" class="hover:text-[#1E2A38]">Freelancer Landing Pages</a></li>
+                  <li><a href="/services/for professionals.html" class="hover:text-[#1E2A38]">Business Showcase Sites</a></li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </li>
+
+      <!-- Contact -->
+      <li><a href="/contact.html" class="hover:text-[#1E2A38] transition">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<script>
+  const servicesBtn = document.getElementById("servicesBtn");
+  const servicesMenu = document.getElementById("servicesMenu");
+  const cats = document.querySelectorAll("[data-panel]");
+  const panels = document.querySelectorAll(".service-panel");
+
+  // Toggle dropdown on click
+  servicesBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    servicesMenu.classList.toggle("hidden");
+  });
+
+  // Show panel when hovering a category
+  cats.forEach(cat => {
+    cat.addEventListener("mouseenter", () => {
+      panels.forEach(p => p.classList.add("hidden"));
+      document.getElementById(cat.dataset.panel).classList.remove("hidden");
+    });
+  });
+
+  // Hide when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!servicesMenu.contains(e.target) && !servicesBtn.contains(e.target)) {
+      servicesMenu.classList.add("hidden");
+    }
+  });
+
+  // Default: all panels hidden
+  panels.forEach(p => p.classList.add("hidden"));
+</script>
+
+</body>
+</html>
+
+      <!-- Mobile Menu Button -->
+      <button class="md:hidden text-2xl text-gray-700">&#9776;</button>
+    </nav>
+  </header>
+
+<!-- Hero Section -->
+ 
+<section class="hero">
+  <div class="hero-content">
+    <h1 class="hero-title">
+      Smart IT <span>Solutions</span><br>
+      for a Smarter <span>Future</span>
+    </h1>
+    <p class="hero-subtitle">
+      Empowering startups & enterprises with modern, scalable & intelligent software solutions.
+    </p>
+    <div class="hero-buttons">
+      <a href="/project order.html" class="btn primary">🚀 Start a Project</a>
+      <a href="/our services.html" class="btn secondary">Explore Services</a>
+    </div>
+  </div>
+
+ 
+</section>
+
+<style>
+/* === Hero Section === */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding: 100px 10%;
+  background: radial-gradient(circle at 10% 20%, #fcf9fc, #044545);
+  overflow: hidden;
+}
+
+/* === Text Styling === */
+.hero-title {
+  font-size: 4.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #111827;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.hero-title span {
+  background: linear-gradient(90deg, #3bd5e6, #042b6b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  margin-top: 20px;
+  font-size: 1.3rem;
+  color: #6b7280;
+  max-width: 600px;
+  animation: fadeInUp 1.3s ease-in-out;
+}
+
+/* === Buttons === */
+.hero-buttons {
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+}
+
+.btn {
+  padding: 14px 28px;
+  font-size: 1rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn.primary {
+  background: #111827;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+.btn.primary:hover {
+  background: #000;
+  transform: translateY(-2px);
+}
+
+.btn.secondary {
+  border: 2px solid #d1d5db;
+  color: #111827;
+  background: #fff;
+}
+.btn.secondary:hover {
+  border-color: #0e2346;
+  color: #3b82f6;
+}
+
+/* === Right Side Graphic === */
+.hero-graphic img {
+  width: 500px;
+  animation: float 4s ease-in-out infinite;
+}
+
+/* === Animations === */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+</style>
+
+<!-- About -->
+<section id="about" class="relative py-32 bg-white">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    
+    <!-- Big Apple-style Heading -->
+    <h2 class="text-6xl md:text-7xl font-extrabold text-[#1E2A38] tracking-tight leading-[1.1]">
+      We Build. We Deploy. <br class="hidden md:block"/> We Empower.
+    </h2>
+    
+    <!-- Subtext -->
+    <p class="mt-8 text-2xl text-gray-500 max-w-3xl mx-auto leading-relaxed">
+      At <span class="font-semibold text-[#3bd5e6]">CodeWell Solutions</span>,  
+      we design modern digital experiences for <br class="hidden md:block"/> 
+      <span class="text-[#1E2A38]">businesses, students, professionals, and portfolios</span>.
+    </p>
+
+    <!-- CTA Buttons -->
+    <div class="mt-12 flex justify-center space-x-6">
+      
+      <a href="/contact.html" 
+         class="px-8 py-4 text-lg border-2 border-[#1E2A38] text-[#1E2A38] rounded-2xl hover:bg-[#1E2A38] hover:text-white transition">
+        Get in Touch
+      </a>
+    </div>
+  </div>
+
+ 
+  </div>
+</section>
+
+<!-- Showcase / Portfolio -->
+<section id="portfolio" class="py-24 relative bg-gradient-to-b from-gray-900 to-black text-white">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    <!-- Heading -->
+    <h2 class="text-6xl font-extrabold tracking-tight mb-16">
+      Crafted with Passion
+    </h2>
+    <p class="text-lg text-gray-300 max-w-2xl mx-auto mb-20">
+      Explore some of the digital experiences we’ve built — blending design, technology, and performance.
+    </p>
+
+    <!-- Grid (teaser cards) -->
+    <div class="grid md:grid-cols-3 gap-12">
+      <div class="relative group bg-white/10 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500">
+        <div class="h-64 overflow-hidden">
+          <img src="/images/business.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+        </div>
+        <div class="absolute inset-0 bg-black/70 flex flex-col items-center justify-center text-center text-white opacity-0 group-hover:opacity-100 transition duration-500">
+          <h3 class="text-2xl font-semibold mb-3">Business Website</h3>
+          <p class="px-6">High-performance websites crafted for businesses aiming to scale online.</p>
+        </div>
+      </div>
+
+      <div class="relative group bg-white/10 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500">
+        <div class="h-64 overflow-hidden">
+          <img src="/images/college.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+        </div>
+        <div class="absolute inset-0 bg-black/70 flex flex-col items-center justify-center text-center text-white opacity-0 group-hover:opacity-100 transition duration-500">
+          <h3 class="text-2xl font-semibold mb-3">Student Portals</h3>
+          <p class="px-6">Modern, accessible platforms tailored for students to manage academics & projects.</p>
+        </div>
+      </div>
+
+      <div class="relative group bg-white/10 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500">
+        <div class="h-64 overflow-hidden">
+          <img src="/images/portfolio.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+        </div>
+        <div class="absolute inset-0 bg-black/70 flex flex-col items-center justify-center text-center text-white opacity-0 group-hover:opacity-100 transition duration-500">
+          <h3 class="text-2xl font-semibold mb-3">Professional Portfolios</h3>
+          <p class="px-6">Minimal, elegant portfolios designed for professionals and creators to shine.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Button -->
+    <div class="mt-16">
+      <button id="openGallery" 
+         class="px-10 py-4 bg-gradient-to-r from-indigo-600 to-blue-500 text-white font-semibold text-lg rounded-full shadow-md hover:shadow-xl transition">
+        Glimpses of our craft →
+      </button>
+    </div>
+  </div>
+
+  <!-- Half Circle Overlay -->
+  <div id="galleryOverlay" 
+       class="fixed bottom-0 right-0 w-0 h-0 rounded-tl-full bg-black/95 overflow-hidden flex items-center justify-center transition-all duration-700 ease-in-out z-50">
+
+    <!-- Close Button -->
+    <button id="closeGallery" class="absolute top-6 right-8 text-white text-3xl">×</button>
+
+    <!-- Horizontal Scroller -->
+    <div class="overflow-x-hidden w-full px-20">
+      <div class="flex gap-8 transition-transform duration-500 ease-linear hover:translate-x-[-200px]">
+        <img src="/images/1st circle.png" class="gallery-img w-80 h-56 object-cover rounded-xl shadow-lg cursor-pointer">
+        <img src="/images/2nd circle.png" class="gallery-img w-80 h-56 object-cover rounded-xl shadow-lg cursor-pointer">
+        <img src="/images/3rd circle.png" class="gallery-img w-80 h-56 object-cover rounded-xl shadow-lg cursor-pointer">
+        <img src="/images/4th circle.png" class="gallery-img w-80 h-56 object-cover rounded-xl shadow-lg cursor-pointer">
+        <img src="/images/5th circle.png" class="gallery-img w-80 h-56 object-cover rounded-xl shadow-lg cursor-pointer">
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Fullscreen Image Lightbox -->
+  <div id="lightbox" 
+       class="fixed inset-0 bg-black/95 hidden z-[60] flex items-center justify-center">
+    <span id="closeLightbox" class="absolute top-6 right-8 text-white text-4xl cursor-pointer">×</span>
+    <img id="lightboxImg" src="" class="max-w-[90%] max-h-[80%] rounded-2xl shadow-2xl">
+  </div>
+</section>
+
+<script>
+  const openBtn = document.getElementById('openGallery');
+  const closeBtn = document.getElementById('closeGallery');
+  const overlay = document.getElementById('galleryOverlay');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const closeLightbox = document.getElementById('closeLightbox');
+
+  // Open half-circle gallery
+  openBtn.addEventListener('click', () => {
+    overlay.style.width = "100vw";
+    overlay.style.height = "100vh";
+  });
+
+  // Close gallery
+  closeBtn.addEventListener('click', () => {
+    overlay.style.width = "0";
+    overlay.style.height = "0";
+  });
+
+  // Image click → open lightbox
+  document.querySelectorAll('.gallery-img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightbox.classList.remove('hidden');
+    });
+  });
+
+  // Close lightbox
+  closeLightbox.addEventListener('click', () => {
+    lightbox.classList.add('hidden');
+    lightboxImg.src = "";
+  });
+</script>
+<!-- Work Philosophy Section - Light Background -->
+<section id="work-philosophy" class="relative py-28 bg-gray-50 overflow-hidden">
+  <div class="max-w-6xl mx-auto px-6 text-center relative z-10">
+    
+    <!-- Heading -->
+    <h2 class="text-6xl font-extrabold text-gray-900 mb-6 tracking-tight">
+      Our<span class="bg-gradient-to-r from-[#044545] to-[#044545] bg-clip-text text-transparent">
+  Work Ethic
+</span>
+
+    </h2>
+    <p class="max-w-3xl mx-auto text-lg text-gray-600 mb-16">
+      We don’t just deliver projects — we build experiences with  
+      <span class="font-semibold text-gray-900">dedication, precision,</span>  
+      and a commitment to long-term partnerships.
+    </p>
+
+    <!-- Animated Steps -->
+    <div class="relative flex flex-col md:flex-row justify-center items-center gap-12 md:gap-20">
+      
+      <!-- Step 1 -->
+      <div class="group relative w-64">
+        <div class="rounded-3xl p-8 bg-gradient-to-r from-black to-[#0f172a] text-white shadow-2xl hover:scale-105 transition duration-500">
+          <span class="absolute -top-6 -left-6 bg-blue-700 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold shadow-lg">01</span>
+          <h3 class="text-xl font-semibold mb-2">Research</h3>
+          <p class="text-sm text-gray-200">We dive deep into your goals and map everything out clearly.</p>
+        </div>
+      </div>
+
+      <!-- Connector Line -->
+      <div class="hidden md:block w-24 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 animate-pulse"></div>
+
+      <!-- Step 2 -->
+      <div class="group relative w-64">
+        <div class="rounded-3xl p-8 bg-gradient-to-r from-black to-[#0f172a] text-white shadow-2xl hover:scale-105 transition duration-500">
+          <span class="absolute -top-6 -left-6 bg-indigo-700 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold shadow-lg">02</span>
+          <h3 class="text-xl font-semibold mb-2">Create</h3>
+          <p class="text-sm text-gray-200">Design & development focused on elegance, usability, and performance.</p>
+        </div>
+      </div>
+
+      <!-- Connector Line -->
+      <div class="hidden md:block w-24 h-1 bg-gradient-to-r from-indigo-600 to-blue-800 animate-pulse"></div>
+
+      <!-- Step 3 -->
+      <div class="group relative w-64">
+        <div class="rounded-3xl p-8 bg-gradient-to-r from-black to-[#0f172a] text-white shadow-2xl hover:scale-105 transition duration-500">
+          <span class="absolute -top-6 -left-6 bg-blue-900 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold shadow-lg">03</span>
+          <h3 class="text-xl font-semibold mb-2">Deliver</h3>
+          <p class="text-sm text-gray-200">On-time delivery with full transparency and continued support.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reminder -->
+    <p class="mt-16 text-gray-600 text-base">
+      🔔 Don’t forget to check all our services from the top navigation bar.
+    </p>
+
+    <!-- Premium CTA Button -->
+    <div class="mt-10">
+      <a href="/work.html" 
+         class="relative inline-flex items-center px-10 py-4 rounded-full bg-gradient-to-r from-blue-700 via-indigo-800 to-black text-white font-semibold text-lg shadow-lg hover:shadow-blue-900/40 transition-all duration-500 group">
+        <span class="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 via-indigo-700 to-black opacity-0 group-hover:opacity-100 blur-lg transition duration-500"></span>
+        <span class="relative z-10">🚀 See How We Work</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h3 class="text-3xl font-bold mb-6 text-[#1E2A38]">Let’s Build Something Great</h3>
+      <p class="text-gray-600 mb-8">Have an idea or project in mind? We’d love to hear from you.</p>
+    
+    </div>
+  </section>
+
+<!--footer -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- Services Column -->
+    <div class="footer-column">
+      <h3>Our Services</h3>
+      <ul>
+        <li><a href="categories/web-development.html">Web Development</a></li>
+        <li><a href="categories/app-development.html">App Development</a></li>
+        <li><a href="categories/ai-solutions.html">AI Solutions</a></li>
+             <li><a href="categories/ui-ux-design.html">UI/UX Design</a></li>
+      </ul>
+    </div>
+
+    <!-- Company Column -->
+    <div class="footer-column">
+      <h3>Company</h3>
+      <ul>
+        <li><a href="/about.html">About Us</a></li>
+      </ul>
+    </div>
+
+
+    <!-- Contact Column -->
+    <div class="footer-column">
+      <h3>Contact Us</h3>
+      <ul>
+        <li>Email: <a href="mailto:codewellsolutionsbusiness@gmail.com">codewellsolutionsbusiness@gmail.com</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 Codewell solutions. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+.footer {
+  background-color: #f9f9f9;
+  color: #111;
+  padding: 60px 20px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 40px;
+}
+
+/* Columns */
+.footer-column {
+  flex: 1 1 200px;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+
+.footer-column h3 {
+  font-weight: 600;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #111;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.footer-column a {
+  text-decoration: none;
+  color: #111;
+  transition: color 0.3s;
+}
+
+.footer-column a:hover {
+  color: #0071e3; /* subtle accent color */
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Social icons inline */
+.footer-column ul li img {
+  width: 20px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+</style>
+
+
+
+</body>
+</html>

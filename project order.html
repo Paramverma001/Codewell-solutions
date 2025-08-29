@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodeWell Solution</title>
+  <link rel="stylesheet" href="/style.css">
+   <link src="/services/for professionals.html">
+   <link src="/services/deployment.html">
+    <link src="/services/for students.html">
+    <link src="/project order.html">
+    <link src="/contact.html">
+         <link src="/index.html">
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+</head>
+<body class="bg-gray-50">
+
+<!-- Logo Splash Overlay -->
+<div id="logo-splash">
+  <img src="/images/CWS logo1.png" alt="Logo" class="logo">
+</div>
+
+<style>
+  #logo-splash {
+    position: fixed; top:0; left:0; width:100%; height:100%;
+    background: rgba(255,255,255,0.95);
+    display:flex; align-items:center; justify-content:center;
+    z-index:9999; opacity:1; pointer-events:none;
+    transition: opacity 1s ease;
+  }
+  #logo-splash .logo {
+    max-width:200px;
+    animation: fadeIn 1.5s ease forwards;
+  }
+  @keyframes fadeIn {
+    0%{opacity:0; transform:scale(0.8)}
+    50%{opacity:1; transform:scale(1)}
+    100%{opacity:1; transform:scale(1)}
+  }
+
+  /* Success Message Styling */
+  #successMessage {
+    display: none;
+  }
+</style>
+
+<script>
+  window.addEventListener("load", function() {
+    const splash = document.getElementById('logo-splash');
+    setTimeout(() => {
+      splash.style.opacity = 0;
+      setTimeout(() => splash.style.display = 'none', 1000);
+    }, 1500);
+  });
+</script>
+
+<!-- Navbar -->
+<header class="border-b bg-white fixed top-0 w-full z-50 shadow-sm">
+  <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+    <!-- Logo -->
+    <a href="/index.html" class="flex items-center space-x-2">
+      <img src="/images/CWS logo1.png" alt="CodeWell Solutions Logo" class="h-12 w-auto">
+    </a>
+
+    <!-- Navbar Links -->
+    <ul class="hidden md:flex space-x-10 text-sm font-medium text-gray-700 relative">
+      <li><a href="/index.html" class="hover:text-[#1E2A38] transition">Home</a></li>
+      <li><a href="/about.html" class="hover:text-[#1E2A38] transition">About</a></li>
+      <li><a href="/contact.html" class="hover:text-[#1E2A38] transition">Contact</a></li>
+    </ul>
+
+    <!-- Mobile Menu -->
+    <button class="md:hidden text-2xl text-gray-700">&#9776;</button>
+  </nav>
+</header>
+
+<!-- Form Section -->
+<section class="min-h-screen flex items-center justify-center px-8 pt-44 pb-20">
+  <div class="w-full max-w-5xl bg-white rounded-3xl shadow-xl p-16 relative overflow-hidden">
+
+    <!-- Header -->
+    <div class="text-center mb-5">
+      <h1 class="text-5xl font-extrabold text-gray-900 mb-4">Start Your Project / Get Quote</h1>
+      <p class="text-lg text-gray-500 max-w-2xl mx-auto">
+        Describe your project and category, and we’ll handle the rest.
+      </p>
+    </div>
+
+    <!-- Form -->
+    <form id="orderForm" class="space-y-15">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Name -->
+        <div>
+          <label class="block mb-2 text-lg font-medium text-gray-800">Full Name</label>
+          <input type="text" name="name" required pattern="[A-Za-z\s]{2,50}"
+                 class="input-field w-full px-5 py-4 border border-gray-300 rounded-xl text-lg bg-gray-50"
+                 placeholder="John Doe" />
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label class="block mb-2 text-lg font-medium text-gray-800">Email</label>
+          <input type="email" name="email" required
+                 class="input-field w-full px-5 py-4 border border-gray-300 rounded-xl text-lg bg-gray-50"
+                 placeholder="example@gmail.com" />
+        </div>
+
+        <!-- Phone -->
+        <div>
+          <label class="block mb-2 text-lg font-medium text-gray-800">Phone Number</label>
+          <div class="flex">
+            <select name="country_code" class="px-3 py-4 border border-gray-300 rounded-l-xl text-lg bg-gray-50">
+              <option value="+91">+91 (IN)</option>
+              <option value="+1">+1 (US)</option>
+              <option value="+44">+44 (UK)</option>
+            </select>
+            <input type="tel" name="phone" required pattern="[0-9]{7,15}"
+                   class="input-field w-full px-5 py-4 border-t border-b border-r border-gray-300 rounded-r-xl text-lg bg-gray-50"
+                   placeholder="1234567890" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Project -->
+      <div>
+        <label class="block mb-2 text-lg font-medium text-gray-800">Project & Category</label>
+        <textarea name="project_details" rows="6" required
+                  class="input-field w-full px-5 py-5 border border-gray-300 rounded-xl text-lg bg-gray-50"
+                  placeholder="Briefly describe your project and the category of service you need..."></textarea>
+      </div>
+
+      <!-- Submit -->
+      <div class="text-center">
+        <button id="submitBtn" type="submit"
+                class="px-16 py-4 bg-blue-600 text-white text-xl font-semibold rounded-xl shadow-md hover:scale-105 transition">
+          Submit Request
+        </button>
+      </div>
+    </form>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="text-center mt-12">
+      <h2 class="text-2xl font-bold text-green-600 mb-4">✅ Thank you for reaching out!</h2>
+      <p class="text-gray-700">We will contact you soon. You cannot submit this form again right now.</p>
+    </div>
+
+  </div>
+</section>
+
+<!--footer -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- Services Column -->
+    <div class="footer-column">
+      <h3>Our Services</h3>
+      <ul>
+        <li><a href="categories/web-development.html">Web Development</a></li>
+        <li><a href="categories/app-development.html">App Development</a></li>
+        <li><a href="categories/ai-solutions.html">AI Solutions</a></li>
+             <li><a href="categories/ui-ux-design.html">UI/UX Design</a></li>
+      </ul>
+    </div>
+
+    <!-- Company Column -->
+    <div class="footer-column">
+      <h3>Company</h3>
+      <ul>
+        <li><a href="/about.html">About Us</a></li>
+      </ul>
+    </div>
+
+
+    <!-- Contact Column -->
+    <div class="footer-column">
+      <h3>Contact Us</h3>
+      <ul>
+        <li>Email: <a href="mailto:codewellsolutionsbusiness@gmail.com">codewellsolutionsbusiness@gmail.com</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 Codewell solutions. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+.footer {
+  background-color: #f9f9f9;
+  color: #111;
+  padding: 60px 20px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 40px;
+}
+
+/* Columns */
+.footer-column {
+  flex: 1 1 200px;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+
+.footer-column h3 {
+  font-weight: 600;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #111;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.footer-column a {
+  text-decoration: none;
+  color: #111;
+  transition: color 0.3s;
+}
+
+.footer-column a:hover {
+  color: #0071e3; /* subtle accent color */
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Social icons inline */
+.footer-column ul li img {
+  width: 20px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+</style>
+
+
+
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init("L3FNKH6_KN_IgNciO");
+  })();
+
+  const form = document.getElementById('orderForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const successMessage = document.getElementById('successMessage');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Disable button to prevent multiple clicks
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Submitting...";
+
+    emailjs.sendForm('service_kx2xgaq', 'template_mu9toma', this)
+      .then(() => {
+        // Hide form & show success message
+        form.style.display = 'none';
+        successMessage.style.display = 'block';
+      })
+      .catch(() => {
+        alert("❌ Something went wrong. Please try again.");
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Submit Request";
+      });
+  });
+</script>
+
+</body>
+</html>

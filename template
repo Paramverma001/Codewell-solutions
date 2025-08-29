@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link src="/style.css">
+   <link src="/services/for professionals.html">
+   <link src="/services/deployment.html">
+    <link src="/services/for students.html">
+  <title>CodeWell Solution</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<!-- Logo Splash Overlay -->
+<div id="logo-splash">
+  <img src="/images/CWS logo1.png" alt="Logo" class="logo">
+</div>
+
+<style>
+  /* Full-screen splash overlay */
+  #logo-splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95); /* semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; /* stays on top of everything */
+    opacity: 1;
+    pointer-events: none; /* allow clicks after fade */
+    transition: opacity 1s ease;
+  }
+
+  /* Logo styling with simple fade-in effect */
+  #logo-splash .logo {
+    max-width: 200px;
+    animation: fadeIn 1.5s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+</style>
+
+<script>
+  // Fade out splash after page load
+  window.addEventListener("load", function() {
+    const splash = document.getElementById('logo-splash');
+    setTimeout(() => {
+      splash.style.opacity = 0; // fade out
+      setTimeout(() => splash.style.display = 'none', 1000); // remove after fade
+    }, 1500); // splash visible duration
+  });
+</script>
+
+  <!-- Navbar -->
+  <header class="border-b bg-white fixed top-0 w-full z-50 shadow-sm">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      
+      <!-- Logo -->
+      <a href="/index.html" class="flex items-center space-x-2">
+        <img src="/images/CWS logo1.png" alt="CodeWell Solutions Logo" class="h-12 w-auto">
+      </a>
+
+      <!-- Navbar Links -->
+    <ul class="hidden md:flex space-x-10 text-sm font-medium text-gray-700 relative">
+      <li><a href="/index.html" class="hover:text-[#1E2A38] transition">Home</a></li>
+      <li><a href="/about.html" class="hover:text-[#1E2A38] transition">About</a></li>
+      
+      <!-- Services Dropdown (Click to Toggle) -->
+      <li class="relative">
+        <button id="servicesBtn" class="hover:text-[#1E2A38] transition flex items-center">
+          Services ▾
+        </button>
+        
+        <!-- Mega Menu -->
+        <div id="servicesMenu" class="absolute left-1/2 transform -translate-x-1/2 mt-3 w-[80vw] max-w-5xl bg-white shadow-xl rounded-lg hidden z-40">
+          <div class="flex">
+            
+            <!-- Categories Column -->
+            <div class="w-1/3 border-r p-6">
+              <ul class="space-y-4 font-medium text-gray-700">
+                <li class="cursor-pointer hover:text-[#1E2A38]" data-panel="deployments">Deployments</li>
+                <li class="cursor-pointer hover:text-[#1E2A38]" data-panel="students">For Students</li>
+                <li class="cursor-pointer hover:text-[#1E2A38]" data-panel="professionals">For Professionals</li>
+              </ul>
+            </div>
+
+            <!-- Services Panels -->
+            <div class="w-2/3 p-8">
+              <div id="deployments" class="service-panel hidden">
+                <h3 class="text-lg font-semibold mb-4 text-[#1E2A38]">Deployments</h3>
+                <ul class="space-y-3 text-gray-600">
+                  <li><a href="/services/deployment.html" class="hover:text-[#1E2A38]">Full Website Deployments</a></li>
+                  <li><a href="/services/deployment.html" class="hover:text-[#1E2A38]">Business Landing Pages</a></li>
+                  <li><a href="/services/deployment.html" class="hover:text-[#1E2A38]">Portfolio Deployments</a></li>
+                </ul>
+              </div>
+
+              <div id="students" class="service-panel hidden">
+                <h3 class="text-lg font-semibold mb-4 text-[#1E2A38]">For Students</h3>
+                <ul class="space-y-3 text-gray-600">
+                  <li><a href="/services/for students.html" class="hover:text-[#1E2A38]">College Project Websites</a></li>
+                  <li><a href="/services/for students.html" class="hover:text-[#1E2A38]">Assignment & Report Portals</a></li>
+                  <li><a href="/services/for students.html" class="hover:text-[#1E2A38]">Mini Project Deployments</a></li>
+                </ul>
+              </div>
+
+              <div id="professionals" class="service-panel hidden">
+                <h3 class="text-lg font-semibold mb-4 text-[#1E2A38]">For Professionals</h3>
+                <ul class="space-y-3 text-gray-600">
+                  <li><a href="/services/for professionals.html" class="hover:text-[#1E2A38]">Portfolio Websites</a></li>
+                  <li><a href="/services/for professionals.html" class="hover:text-[#1E2A38]">Freelancer Landing Pages</a></li>
+                  <li><a href="/services/for professionals.html" class="hover:text-[#1E2A38]">Business Showcase Sites</a></li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </li>
+
+      <!-- Contact -->
+      <li><a href="#contact" class="hover:text-[#1E2A38] transition">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<script>
+  const servicesBtn = document.getElementById("servicesBtn");
+  const servicesMenu = document.getElementById("servicesMenu");
+  const cats = document.querySelectorAll("[data-panel]");
+  const panels = document.querySelectorAll(".service-panel");
+
+  // Toggle dropdown on click
+  servicesBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    servicesMenu.classList.toggle("hidden");
+  });
+
+  // Show panel when hovering a category
+  cats.forEach(cat => {
+    cat.addEventListener("mouseenter", () => {
+      panels.forEach(p => p.classList.add("hidden"));
+      document.getElementById(cat.dataset.panel).classList.remove("hidden");
+    });
+  });
+
+  // Hide when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!servicesMenu.contains(e.target) && !servicesBtn.contains(e.target)) {
+      servicesMenu.classList.add("hidden");
+    }
+  });
+
+  // Default: all panels hidden
+  panels.forEach(p => p.classList.add("hidden"));
+</script>
+
+</body>
+</html>
+
+      <!-- Mobile Menu Button -->
+      <button class="md:hidden text-2xl text-gray-700">&#9776;</button>
+    </nav>
+  </header>
+
+
+  
+
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- Services Column -->
+    <div class="footer-column">
+      <h3>Our Services</h3>
+      <ul>
+        <li><a href="categories/web-development.html">Web Development</a></li>
+        <li><a href="categories/app-development.html">App Development</a></li>
+        <li><a href="categories/ai-solutions.html">AI Solutions</a></li>
+        <li><a href="categories/digital-marketing.html">Digital Marketing</a></li>
+        <li><a href="categories/cloud-services.html">Cloud Services</a></li>
+        <li><a href="categories/ui-ux-design.html">UI/UX Design</a></li>
+        <li><a href="categories/seo-services.html">SEO Services</a></li>
+      </ul>
+    </div>
+
+    <!-- Company Column -->
+    <div class="footer-column">
+      <h3>Company</h3>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="services.html">Services Overview</a></li>
+      </ul>
+    </div>
+
+    <!-- Support Column -->
+    <div class="footer-column">
+      <h3>Support</h3>
+      <ul>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact Support</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms & Conditions</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact Column -->
+    <div class="footer-column">
+      <h3>Contact Us</h3>
+      <ul>
+        <li>Email: <a href="mailto:info@yourcompany.com">info@yourcompany.com</a></li>
+        <li>Phone: <a href="tel:+911234567890">+91 123 456 7890</a></li>
+        <li>Address: 123 Business Street, City, Country</li>
+        <li>Social: 
+          <a href="#"><img src="assets/icons/facebook.svg" alt="Facebook" /></a>
+          <a href="#"><img src="assets/icons/twitter.svg" alt="Twitter" /></a>
+          <a href="#"><img src="assets/icons/linkedin.svg" alt="LinkedIn" /></a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 Your Company Name. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+.footer {
+  background-color: #f9f9f9;
+  color: #111;
+  padding: 60px 20px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 40px;
+}
+
+/* Columns */
+.footer-column {
+  flex: 1 1 200px;
+}
+
+.footer-column h3 {
+  font-weight: 600;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #111;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.footer-column a {
+  text-decoration: none;
+  color: #111;
+  transition: color 0.3s;
+}
+
+.footer-column a:hover {
+  color: #0071e3; /* subtle accent color */
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Social icons inline */
+.footer-column ul li img {
+  width: 20px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+</style>
+
+
+</body>
+</html>
