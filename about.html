@@ -1,0 +1,513 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link src="/style.css">
+   <link src="/services/for professionals.html">
+   <link src="/services/deployment.html">
+    <link src="/services/for students.html">
+    <link src="/project order.html">
+    <link src="/contact.html">
+         <link src="/index.html">
+  <title>CodeWell Solution</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<!-- Logo Splash Overlay -->
+<div id="logo-splash">
+  <img src="/images/CWS logo1.png" alt="Logo" class="logo">
+</div>
+
+<style>
+  /* Full-screen splash overlay */
+  #logo-splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95); /* semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; /* stays on top of everything */
+    opacity: 1;
+    pointer-events: none; /* allow clicks after fade */
+    transition: opacity 1s ease;
+  }
+
+  /* Logo styling with simple fade-in effect */
+  #logo-splash .logo {
+    max-width: 200px;
+    animation: fadeIn 1.5s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+</style>
+
+<script>
+  // Fade out splash after page load
+  window.addEventListener("load", function() {
+    const splash = document.getElementById('logo-splash');
+    setTimeout(() => {
+      splash.style.opacity = 0; // fade out
+      setTimeout(() => splash.style.display = 'none', 1000); // remove after fade
+    }, 1500); // splash visible duration
+  });
+</script>
+
+  <!-- Navbar -->
+  <header class="border-b bg-white fixed top-0 w-full z-50 shadow-sm">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      
+      <!-- Logo -->
+      <a href="/index.html" class="flex items-center space-x-2">
+        <img src="/images/CWS logo1.png" alt="CodeWell Solutions Logo" class="h-12 w-auto">
+      </a>
+
+      <!-- Navbar Links -->
+    <ul class="hidden md:flex space-x-10 text-sm font-medium text-gray-700 relative">
+      <li><a href="/index.html" class="hover:text-[#1E2A38] transition">Home</a></li>
+      <li><a href="/about.html" class="hover:text-[#1E2A38] transition">About</a></li>
+      
+      <!-- Services Dropdown (Click to Toggle) -->
+      <li class="relative">
+        <button id="servicesBtn" class="hover:text-[#1E2A38] transition flex items-center">
+          Services ▾
+        </button>
+        
+        <!-- Mega Menu -->
+        <div id="servicesMenu" class="absolute left-1/2 transform -translate-x-1/2 mt-3 w-[80vw] max-w-5xl bg-white shadow-xl rounded-lg hidden z-40">
+          <div class="flex">
+            
+            <!-- Categories Column -->
+            <div class="w-1/3 border-r p-6">
+              <ul class="space-y-4 font-medium text-gray-700">
+                <li class="cursor-pointer hover:text-[#1E2A38]" data-panel="deployments">Deployments</li>
+                <li class="cursor-pointer hover:text-[#1E2A38]" data-panel="students">For Students</li>
+                <li class="cursor-pointer hover:text-[#1E2A38]" data-panel="professionals">For Professionals</li>
+              </ul>
+            </div>
+
+            <!-- Services Panels -->
+            <div class="w-2/3 p-8">
+              <div id="deployments" class="service-panel hidden">
+                <h3 class="text-lg font-semibold mb-4 text-[#1E2A38]">Deployments</h3>
+                <ul class="space-y-3 text-gray-600">
+                  <li><a href="/services/deployment.html" class="hover:text-[#1E2A38]">Full Website Deployments</a></li>
+                  <li><a href="/services/deployment.html" class="hover:text-[#1E2A38]">Business Landing Pages</a></li>
+                  <li><a href="/services/deployment.html" class="hover:text-[#1E2A38]">Portfolio Deployments</a></li>
+                </ul>
+              </div>
+
+              <div id="students" class="service-panel hidden">
+                <h3 class="text-lg font-semibold mb-4 text-[#1E2A38]">For Students</h3>
+                <ul class="space-y-3 text-gray-600">
+                  <li><a href="/services/for students.html" class="hover:text-[#1E2A38]">College Project Websites</a></li>
+                  <li><a href="/services/for students.html" class="hover:text-[#1E2A38]">Assignment & Report Portals</a></li>
+                  <li><a href="/services/for students.html" class="hover:text-[#1E2A38]">Mini Project Deployments</a></li>
+                </ul>
+              </div>
+
+              <div id="professionals" class="service-panel hidden">
+                <h3 class="text-lg font-semibold mb-4 text-[#1E2A38]">For Professionals</h3>
+                <ul class="space-y-3 text-gray-600">
+                  <li><a href="/services/for professionals.html" class="hover:text-[#1E2A38]">Portfolio Websites</a></li>
+                  <li><a href="/services/for professionals.html" class="hover:text-[#1E2A38]">Freelancer Landing Pages</a></li>
+                  <li><a href="/services/for professionals.html" class="hover:text-[#1E2A38]">Business Showcase Sites</a></li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </li>
+
+      <!-- Contact -->
+      <li><a href="/contact.html" class="hover:text-[#1E2A38] transition">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<script>
+  const servicesBtn = document.getElementById("servicesBtn");
+  const servicesMenu = document.getElementById("servicesMenu");
+  const cats = document.querySelectorAll("[data-panel]");
+  const panels = document.querySelectorAll(".service-panel");
+
+  // Toggle dropdown on click
+  servicesBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    servicesMenu.classList.toggle("hidden");
+  });
+
+  // Show panel when hovering a category
+  cats.forEach(cat => {
+    cat.addEventListener("mouseenter", () => {
+      panels.forEach(p => p.classList.add("hidden"));
+      document.getElementById(cat.dataset.panel).classList.remove("hidden");
+    });
+  });
+
+  // Hide when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!servicesMenu.contains(e.target) && !servicesBtn.contains(e.target)) {
+      servicesMenu.classList.add("hidden");
+    }
+  });
+
+  // Default: all panels hidden
+  panels.forEach(p => p.classList.add("hidden"));
+</script>
+
+</body>
+</html>
+
+      <!-- Mobile Menu Button -->
+      <button class="md:hidden text-2xl text-gray-700">&#9776;</button>
+    </nav>
+  </header>
+
+<section class="relative bg-gradient-to-br from-black via-gray-900 to-black  text-white min-h-screen flex flex-col justify-center items-center px-8">
+  <!-- Hero -->
+  <div class="text-center space-y-6 animate-fadeIn">
+    <h1 class="text-6xl md:text-8xl font-bold tracking-tight">
+      We Are More Than A Startup
+    </h1>
+    <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+      Building digital experiences that are fast, bold, and future-ready.
+    </p>
+  </div>
+</section>
+
+<!-- Story / Startup Journey -->
+<section class="bg-white text-black py-24 px-10 md:px-20">
+  <h2 class="text-5xl font-semibold mb-16 text-center">Our Journey</h2>
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-12 text-lg">
+    <div>
+      <h3 class="text-2xl font-bold mb-2">2019</h3>
+      <p>Started with small college projects & experiments that sparked big dreams.</p>
+    </div>
+    <div>
+      <h3 class="text-2xl font-bold mb-2">2021</h3>
+      <p>Freelancers trusted us to shape their first online presence & portfolios.</p>
+    </div>
+    <div>
+      <h3 class="text-2xl font-bold mb-2">2023</h3>
+      <p>Businesses & startups joined in, and we began creating showcase sites.</p>
+    </div>
+    <div>
+      <h3 class="text-2xl font-bold mb-2">2025</h3>
+      <p>Now scaling as a startup—designing experiences that go beyond just websites.</p>
+    </div>
+  </div>
+</section>
+<!-- About & Work With Us Section -->
+<section id="about-us" class="relative bg-gradient-to-br from-gray-900 to-gray-800 text-white py-32 px-10 md:px-32 overflow-hidden">
+
+  <!-- Background Faded Logo -->
+  <div class="absolute inset-0 flex items-center justify-center">
+    <img src="/images/CWS only logo.png" alt="CWS Logo" 
+         class="w-[50%] opacity-70 object-contain pointer-events-none select-none relative z-0">
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-5xl mx-auto text-center">
+    <h2 class="text-5xl md:text-6xl font-extrabold mb-12 opacity-0 translate-y-10 transition-all duration-1000 ease-out"
+        data-animate="fade-up">
+      About CodeWell Solutions
+    </h2>
+
+    <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-12 opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-200"
+       data-animate="fade-up">
+      We are a young, dynamic startup focused on transforming ideas into digital realities. From full-scale websites to mini projects and innovative solutions, our mission is to make technology accessible, creative, and scalable for everyone.  
+    </p>
+
+    <p class="text-lg md:text-xl text-gray-400 max-w-4xl mx-auto mb-16 opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-400"
+       data-animate="fade-up">
+      Whether you’re a student looking to deploy your projects, a professional showcasing your portfolio, or a business aiming to establish a strong online presence, we collaborate closely with you to create impactful, seamless, and elegant solutions.  
+    </p>
+
+    <div class="opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-600" data-animate="fade-up">
+      <p class="text-xl md:text-2xl mb-8">
+        Interested in working with us? Let’s build something extraordinary together.
+      </p>
+      <a href="mailto:info@yourcompany.com" 
+         class="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full transition-all duration-300">
+        Reach Out to Us
+      </a>
+    </div>
+  </div>
+
+  <!-- Optional subtle animated particles for background -->
+  <canvas id="about-bg-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
+</section>
+
+<script>
+// Fade-up scroll animation for this section
+const animateOnScroll2 = () => {
+  document.querySelectorAll('[data-animate]').forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    if(top < window.innerHeight - 100) el.classList.remove('opacity-0','translate-y-10');
+  });
+};
+window.addEventListener('scroll', animateOnScroll2);
+animateOnScroll2();
+
+// Optional subtle particle animation
+const canvas2 = document.getElementById('about-bg-canvas');
+const ctx2 = canvas2.getContext('2d');
+canvas2.width = window.innerWidth;
+canvas2.height = window.innerHeight;
+
+class Particle {
+  constructor(){
+    this.reset();
+  }
+  reset() {
+    this.x = Math.random()*canvas2.width;
+    this.y = Math.random()*canvas2.height;
+    this.size = Math.random()*2 + 1;
+    this.vx = (Math.random()-0.5)*0.2;
+    this.vy = (Math.random()-0.5)*0.2;
+    this.alpha = Math.random()*0.3 + 0.1;
+  }
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    if(this.x<0||this.x>canvas2.width||this.y<0||this.y>canvas2.height) this.reset();
+  }
+  draw() {
+    ctx2.fillStyle = `rgba(255,255,255,${this.alpha})`;
+    ctx2.beginPath();
+    ctx2.arc(this.x,this.y,this.size,0,Math.PI*2);
+    ctx2.fill();
+  }
+}
+
+const particles = [];
+for(let i=0;i<120;i++) particles.push(new Particle());
+
+function animateParticles() {
+  ctx2.clearRect(0,0,canvas2.width,canvas2.height);
+  particles.forEach(p=>{ p.update(); p.draw(); });
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+window.addEventListener('resize', ()=>{
+  canvas2.width = window.innerWidth;
+  canvas2.height = window.innerHeight;
+});
+</script>
+
+<!-- Beliefs - Scroll Animated with Faded Logo BG -->
+<section id="beliefs" class="relative bg-white text-white py-28 px-10 md:px-32 overflow-hidden">
+
+  <!-- Faded Logo Background -->
+  <div class="absolute inset-0 flex items-center justify-center">
+    <img src="/images/CWS only logo.png" alt="CWS Logo" 
+         class="w-[60%] opacity-20 object-contain pointer-events-none select-none">
+  </div>
+<!-- Black overlay on top of the logo -->
+  <div class="absolute inset-0 bg-black/50 pointer-events-none"></div>
+  
+  <div class="relative z-10 max-w-5xl mx-auto text-center">
+    <!-- Heading -->
+    <h2 class="text-6xl font-extrabold tracking-tight mb-10 opacity-0 translate-y-10 transition-all duration-1000 ease-out"
+        data-animate="fade-up">
+      What Drives Us
+    </h2>
+
+    <p class="text-2xl font-light text-white-400 max-w-3xl mx-auto mb-20 opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-200"
+       data-animate="fade-up">
+      Our work is powered by principles that ensure every project is bold, purposeful, and future-ready.
+    </p>
+
+    <!-- Beliefs -->
+    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-16 mt-12 text-left">
+      
+      <div class="group flex-1 opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-400"
+           data-animate="fade-up">
+        <h3 class="text-3xl font-semibold mb-4 relative inline-block after:block after:h-[2px] after:bg-white after:scale-x-0 after:origin-left after:transition-transform group-hover:after:scale-x-100">
+          Clarity
+        </h3>
+        <p class="text-lg text-white-400 leading-relaxed">
+          Designs stripped down to what matters most—making everything intuitive and effortless to use.
+        </p>
+      </div>
+
+       <div class="group flex-1 opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-600"
+           data-animate="fade-up">
+        <h3 class="text-3xl font-semibold mb-4 relative inline-block after:block after:h-[2px] after:bg-white after:scale-x-0 after:origin-left after:transition-transform group-hover:after:scale-x-100">
+          Workmanship
+        </h3>
+        <p class="text-lg text-white-400 leading-relaxed">
+          Quality, precision, and attention to detail are embedded in every project we deliver.
+        </p>
+      </div>
+
+      <div class="group flex-1 opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-800"
+           data-animate="fade-up">
+        <h3 class="text-3xl font-semibold mb-4 relative inline-block after:block after:h-[2px] after:bg-white after:scale-x-0 after:origin-left after:transition-transform group-hover:after:scale-x-100">
+          Scalability
+        </h3>
+        <p class="text-lg text-white-400 leading-relaxed">
+          We build solutions that grow with you—future-ready, adaptable, and designed for expansion.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Scroll Animation Script -->
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove("opacity-0", "translate-y-10");
+        entry.target.classList.add("opacity-100", "translate-y-0");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll("[data-animate]").forEach(el => observer.observe(el));
+</script>
+
+<!-- Reach Out -->
+<section class="relative bg-gradient-to-br from-black via-gray-900 to-black text-white py-32 px-10 md:px-20 text-center">
+  <h2 class="text-6xl font-bold mb-10 animate-fadeInUp">
+    Let’s Build The Future Together
+  </h2>
+  <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
+    We’re a startup that believes in collaboration, innovation, and bold execution.
+    Have a vision? Let’s bring it to life. Reach out to us anytime at 
+    <span class="text-blue-400">codewellsolutionsbusiness@gmail.com</span>
+  </p>
+  <a href="/project order.html" 
+     class="inline-block px-10 py-4 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition">
+     Start a Project
+  </a>
+</section>
+
+  
+
+<!--footer -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- Services Column -->
+    <div class="footer-column">
+      <h3>Our Services</h3>
+      <ul>
+        <li><a href="categories/web-development.html">Web Development</a></li>
+        <li><a href="categories/app-development.html">App Development</a></li>
+        <li><a href="categories/ai-solutions.html">AI Solutions</a></li>
+             <li><a href="categories/ui-ux-design.html">UI/UX Design</a></li>
+      </ul>
+    </div>
+
+    <!-- Company Column -->
+    <div class="footer-column">
+      <h3>Company</h3>
+      <ul>
+        <li><a href="/about.html">About Us</a></li>
+      </ul>
+    </div>
+
+
+    <!-- Contact Column -->
+    <div class="footer-column">
+      <h3>Contact Us</h3>
+      <ul>
+        <li>Email: <a href="mailto:codewellsolutionsbusiness@gmail.com">codewellsolutionsbusiness@gmail.com</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 Codewell solutions. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+.footer {
+  background-color: #f9f9f9;
+  color: #111;
+  padding: 60px 20px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 40px;
+}
+
+/* Columns */
+.footer-column {
+  flex: 1 1 200px;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+
+.footer-column h3 {
+  font-weight: 600;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #111;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.footer-column a {
+  text-decoration: none;
+  color: #111;
+  transition: color 0.3s;
+}
+
+.footer-column a:hover {
+  color: #0071e3; /* subtle accent color */
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Social icons inline */
+.footer-column ul li img {
+  width: 20px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+</style>
+
+
+
+</body>
+</html>
