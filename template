@@ -4,16 +4,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link src="/style.css">
-   <link src="/services/for professionals.html">
-   <link src="/services/deployment.html">
-    <link src="/services/for students.html">
+  <link rel="stylesheet" href="style.css">
+   
+   
+    
   <title>CodeWell Solution</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <!-- Logo Splash Overlay -->
 <div id="logo-splash">
-  <img src="/images/CWS logo1.png" alt="Logo" class="logo">
+  <img src="images/CWS-logo1.png" alt="Logo" class="logo">
 </div>
 
 <style>
@@ -63,8 +63,8 @@
     <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
       
       <!-- Logo -->
-      <a href="/index.html" class="flex items-center space-x-2">
-        <img src="/images/CWS logo1.png" alt="CodeWell Solutions Logo" class="h-12 w-auto">
+      <a href="index.html" class="flex items-center space-x-2">
+        <img src="images/CWS-logo1.png" alt="CodeWell Solutions Logo" class="h-12 w-auto">
       </a>
 
       <!-- Navbar Links -->
